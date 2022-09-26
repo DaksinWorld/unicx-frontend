@@ -69,9 +69,9 @@ export default {
     port: 4000,
   },
 
-  generate: {
+/*  generate: {
     dir: '../backend/client'
-  },
+  },*/
 
   ssr: false,
 
