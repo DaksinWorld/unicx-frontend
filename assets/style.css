@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #1e2023;
+  --bgColor: #151617;
+  --textColor: #fff;
+  --hoverColor: #27282b;
+  --iColor: #B9BABB;
+  --aqua: #1B3B49;
+  --light-aqua: #0bbdfb;
+  --grayTextColor: #b9babb;
+  --tabHover: #323336;
+  --tabBg: #18191C;
+  --underCardColor: #17181B;
+  --green: #41b841;
+}
+
+* {
+  font-family: Poppins;
+  color: var(--textColor);
+  transition: color 0.3s ease-in-out;
+}
+
+.nuxt-link-active {
+  padding: 7px 15px ;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bgColor);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.container {
+  width: 100% !important;
+  padding: 12px 0;
+  margin: 0 auto !important;
+}
+
+.input {
+  background: none;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.el-hover-bg-rounded {
+  transition: all .3s ease-in-out;
+  padding: 5px 20px;
+}
+
+.el-hover-bg-rounded:hover {
+  background-color: var(--hoverColor);
+  border-radius: 50%;
+}
+
+.hover-el {
+  padding: 7px 16px;
+  margin-right: 5px;
+}
+
+.hover-el:hover {
+  padding: 7px 15px ;
+  background-color: var(--hoverColor);
+}
+
+@media (min-width: 960px) {
+  .container {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1264px) {
+  .container {
+    max-width: 1100px;
+  }
+}
