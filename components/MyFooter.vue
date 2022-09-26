@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="el-hover-bg-rounded">
+<!--    <div class="el-hover-bg-rounded">
       <a :href="twitter">
         <i class="fa-brands fa-twitter text-[#b9babb] text-[26px]"></i>
       </a>
@@ -9,7 +9,7 @@
       <a :href="telegram">
         <img width="26" height="26" src="/telegram.png" alt="telegram">
       </a>
-    </div>
+    </div>-->
     <nuxt-link to="/terms" :class="{'el-hover-bg': $route.path === '/terms'}" class="hover-el cursor-pointer font-medium text-[#b9babb] text-[14px]">
       Terms and Conditions
     </nuxt-link>

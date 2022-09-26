@@ -48,6 +48,7 @@
         <input required
                v-model="maxPool"
                type="number"
+               min="1"
                :placeholder="maxPool"
         />
       </div>
@@ -61,7 +62,7 @@
       </div>
       <div>
         <label>Max Users(bar)</label>
-        <input required v-model="maxUsers" type="number" :placeholder="maxUsers"/>
+        <input required v-model="maxUsers" type="number" min="1" :placeholder="maxUsers"/>
       </div>
       <div>
         <label>Current Users, the same logic as pool</label>
@@ -85,7 +86,7 @@
       </div>
       <div>
         <label>Total Whitelist</label>
-        <input required v-model="totalWhitelist" type="number" :placeholder="totalWhitelist"/>
+        <input required v-model="totalWhitelist" type="number" min="1" :placeholder="totalWhitelist"/>
       </div>
       <div>
         <label>Whitelisted Users, the same logic as pool, (bar)</label>

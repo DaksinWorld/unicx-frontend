@@ -8,12 +8,12 @@
           </div>
         </div>
         <div class="card c-border p-0">
-          <div class="container flexing-col flex items-center">
+          <div class="container m-0 p-2px flexing-col flex items-center">
             <img
-              v-if="data.photoUrl" width="180px" height="180px" class="img mr-3"
+              v-if="data.photoUrl" width="160px" height="160px" class="img mr-3"
               :src="baseUrl + data.photoUrl[0].url"/>
             <div class="flex w-full flex-col">
-              <h1 class="text-[34px] mb-2 hover:text-green-400">{{ data.title }}</h1>
+              <h1 class="text-[28px] mb-2 hover:text-green-400">{{ data.title }}</h1>
               <div class="flex justify-between">
                 <div class="text-gray">Socials</div>
                 <div class="text-gray">
@@ -63,36 +63,60 @@
           </div>
         </div>
         <div class="card p-0 mt-1 c-border">
-          <div class="container">
+          <div class="container m-0 p-2px">
             <div class="flex card p-0">
-              <div
-                class="flex items-center mr-2 w-50">
+              <div class="flex items-center w-50 mr-2">
                 <div
-                  class="bg-primary h-[30px] green-col bg-white relative"
-                  :style="{width: `${100 / (data.maxPool / data.poolValue)}%`}"></div>
+                  class="bg-primary h-[30px] green-col bg-white relative flex items-center justify-around text-[#fafafa]"
+                  :style="{ width: `${100 / (data.maxPool / data.poolValue)}%` }"
+                >
+                  <div class="text-[#fafafa] text-[16px]" v-if="data.poolValue / data.maxPool >= 1">
+                    {{ data.poolValue }} / {{ data.maxPool }} {{ data.poolCurrency }}
+                  </div>
+                </div>
                 <div
-                  class="bg-primary h-[30px] text-[16px] font-medium relative w-full justify-center flex items-center bl-0">
-                  {{ data.poolValue }} / {{ data.maxPool }} {{ data.poolCurrency }}
+                  :class="{'rounded-[15px]': data.poolValue === 0}"
+                  v-if="(data.maxPool / data.poolValue) > 1"
+                  class="bg-primary  h-[30px] relative w-full flex items-center justify-between pl-4">
+                  <div class="text-[#fafafa] text-[16px]">
+                    {{ data.poolValue }} / {{ data.maxPool }} {{ data.poolCurrency }}
+                  </div>
                 </div>
               </div>
-              <div class="flex flex-row items-center w-25 mr-2 justify between">
-                <div class="w-full flex items-center">
-                  <div
-                    class="bg-primary h-[20px] blue-col bg-white relative"
-                    :style="{width: `${100 / (data.maxUsers / data.totalUsers)}%`}"></div>
-                  <div
-                    class="bg-primary h-[20px] text-[12px] font-medium relative w-full justify-center flex items-center bl-0">
+              <div class="flex items-center w-25 mr-2">
+                <div
+                  class="bg-primary h-[20px] blue-col bg-white relative flex items-center justify-around text-[#fafafa]"
+                  :style="{ width: `${100 / (data.maxUsers / data.totalUsers)}%` }"
+                >
+                  <div class="text-[#fafafa] text-[12px]" v-if="data.totalUsers / data.maxUsers >= 1">
+                    {{ data.totalUsers }} / {{ data.maxUsers }} reserved
+                  </div>
+                </div>
+
+                <div
+                  :class="{'rounded-[15px]': data.totalUsers === 0}"
+                  v-if="(data.maxUsers / data.totalUsers) > 1"
+                  class="bg-primary  h-[20px] relative w-full flex items-center justify-between pl-4">
+                  <div class="text-[#fafafa] text-[12px]">
                     {{ data.totalUsers }} / {{ data.maxUsers }} reserved
                   </div>
                 </div>
               </div>
-              <div class="flex flex-row items-center w-25 mr-2 justify between">
-                <div class="w-full flex items-center">
-                  <div
-                    class="bg-primary h-[20px] blue-col bg-white relative"
-                    :style="{width: `${100 / (data.totalWhitelist / data.whitelistedUsers)}%`}"></div>
-                  <div
-                    class="bg-primary h-[20px] relative w-full text-[12px] font-medium flex justify-center items-center bl-0 text-[#fafafa]">
+
+              <div class="flex items-center w-25 mr-2">
+                <div
+                  class="bg-primary h-[20px] blue-col bg-white relative flex items-center justify-around text-[#fafafa]"
+                  :style="{ width: `${100 / (data.totalWhitelist / data.whitelistedUsers)}%` }"
+                >
+                  <div class="text-[#fafafa] text-[12px]" v-if="data.whitelistedUsers / data.totalWhitelist >= 1">
+                    {{ data.whitelistedUsers }} / {{ data.totalWhitelist }} whitelist
+                  </div>
+                </div>
+                <div
+                  :class="{'rounded-[15px]': data.whitelistedUsers === 0}"
+                  v-if="(data.totalWhitelist / data.whitelistedUsers) > 1"
+                  class="bg-primary  h-[20px] relative w-full flex items-center justify-between pl-4">
+                  <div class="text-[#fafafa] text-[12px]">
                     {{ data.whitelistedUsers }} / {{ data.totalWhitelist }} whitelist
                   </div>
                 </div>
@@ -130,19 +154,23 @@
                   <div
                     v-if="data.type === 'Live'"
                     :class="{'tab-active': currentTab === 'presale'}"
-                    class="tab text-[14px] w-50 cursor-pointer"
+                    class="tab text-[14px]font-medium w-50 cursor-pointer"
                     @click="currentTab = 'presale'"
                   >
-                    <h1>
+                    <h1
+                      :class="{'text-[#b9babb]': currentTab !== 'presale'}"
+                    >
                       PRESALE
                     </h1>
                   </div>
                   <div
                     :class="{'tab-active': currentTab === 'info', 'w-50': data.type === 'Live'}"
-                    class="tab text-[14px] w-full cursor-pointer"
+                    class="tab text-[14px] font-medium w-full cursor-pointer"
                     @click="currentTab = 'info'"
                   >
-                    <h1>
+                    <h1
+                      :class="{'text-[#b9babb]': currentTab === 'presale'}"
+                    >
                       INFO
                     </h1>
                   </div>
@@ -205,7 +233,9 @@
                         <i class="fa-solid fa-lock text-[27px] text-[#63cc77]"></i>
                       </progress-circle>
                       <div class="flex flex-col text-center">
-                       <span class="text-[20px] text-[#63cc77]">{{ (JSON.parse(data.graph[0])[0] / JSON.parse(data.graph[0]).reduce((acc, prev) => +acc + +prev) * 100).toFixed(1) }} %</span>
+                       <span class="text-[20px] text-[#63cc77]">{{
+                           (JSON.parse(data.graph[0])[0] / JSON.parse(data.graph[0]).reduce((acc, prev) => +acc + +prev) * 100).toFixed(1)
+                         }} %</span>
                         <span class="text-gray">
                           Tokenomics
                         </span>
@@ -217,7 +247,8 @@
               <div v-if="currentTab === 'presale'" class="text-center flex flex-col">
                 <div class="flex flex-col items-center">
                   <input v-model="addressValue" class="form-contro" type="text" placeholder="Address">
-                  <button class="confirm p-2 rounded-lg mt-3 min-w-[120px]" :disabled="addressValue.length < 8 || isConfirmed" @click="confirm">
+                  <button class="confirm p-2 rounded-lg mt-3 min-w-[120px]"
+                          :disabled="addressValue.length < 8 || isConfirmed" @click="confirm">
                     {{ isConfirmed === false ? 'Confirm' : 'Confirmed' }}
                   </button>
                 </div>
@@ -437,7 +468,7 @@ export default {
 
 .main {
   min-height: calc(100vh - 300px);
-  padding-bottom: 20px;
+  padding-bottom: 60px;
 }
 
 .mt-100px {
@@ -480,13 +511,34 @@ export default {
   border-radius: 50%;
 }
 
+.bg-primary:first-child {
+  background: var(--textColor);
+}
+
+.bg-primary {
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 15px;
+  background: var(--bgColor);
+  color: #fafafa;
+}
+
+.green-col {
+  background: #3DBE85 !important;
+}
+
+.blue-col {
+  background: #5A97FE !important;
+}
+
+.bl-0 {
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
 .bg-primary {
   border-radius: 15px;
   background: var(--bgColor);
-}
-
-.bg-primary:first-child {
-  background: var(--textColor);
 }
 
 .confirm:disabled {
@@ -553,7 +605,8 @@ export default {
 .tab {
   background: var(--tabBg);
   padding: 15px 0;
-  color: var(--grayTextColor);
+  font-size: 14px;
+  color: var(--iColor) !important;
   display: flex;
   justify-content: center;
   letter-spacing: .0892857143em;
@@ -580,7 +633,7 @@ export default {
 }
 
 .tab-active {
-  color: var(--textColor);
+  color: #fafafa;
   border-bottom: 2px solid white;
 }
 
@@ -609,6 +662,10 @@ export default {
     margin-left: 0;
   }
 
+}
+
+.p-2px {
+  padding: 5px 0 !important;
 }
 
 </style>

@@ -5,7 +5,7 @@
         <div class="flex items-center">
           <a href="/" class="mr-[16px]">
             <img
-              src="https://raw.githubusercontent.com/Unicrypt/media/b8bdd2075b322bdf3f07deb99e27cd4ae59e9752/logo/Unicrypt_Logo_Horizontal_(For_Dark_BG).svg"
+              src="/logo.png"
               width="220px" alt="logo">
           </a>
           <NuxtLink class="text-[#fafafa] hover-el font-medium rounded-[50px]" to="/">
@@ -14,9 +14,9 @@
           <NuxtLink class="text-[#fafafa] hover-el font-medium rounded-[50px]" to="/document">
             Docs
           </NuxtLink>
-          <a :href="telegram" target="_blank">
+<!--          <a :href="telegram" target="_blank">
             <i class="fa-brands fa-telegram text-[24px]"></i>
-          </a>
+          </a>-->
         </div>
         <div class="flex items-center">
           <div v-if="profile.email" class="cursor-pointe p-2" @click="isModalActive = true">
